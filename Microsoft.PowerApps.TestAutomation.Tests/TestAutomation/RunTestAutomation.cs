@@ -85,6 +85,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                             
                             Console.WriteLine($"Account Values #{_username}: {_password}");
                             Console.WriteLine($"Login attempts: {Reference.Login.SignInAttempts}");
+                            Console.WriteLine($"URL: {_xrmUri}");
                             Console.WriteLine($"loginMethod: {_loginMethod}");
                             
                             for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
@@ -103,6 +104,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     else if (_loginMethod == "FederatedIdentity")
                                     {
                                         // Do Federated Login
+                                         Console.WriteLine($"Federated Login");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString(), FederatedLoginAction);
                                         break;
                                     }
@@ -116,6 +118,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     // Fallback to CloudIdentity experience if _loginMethod is not provided
                                     else
                                     {
+                                        Console.WriteLine($"Fallback to CloudIdentity experience if _loginMethod is not provided");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
                                         break;
                                     }
