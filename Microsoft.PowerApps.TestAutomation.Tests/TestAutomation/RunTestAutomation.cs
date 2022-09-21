@@ -93,7 +93,8 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                             Debug.WriteLine($"URL: {_xrmUri}");
                             Debug.WriteLine($"loginMethod: {_loginMethod}");
                             
-                            for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
+                            // for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
+                            for (int retryCount = 0; retryCount < 5; retryCount++)
                             {
                                 try
                                 {
@@ -124,8 +125,8 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     else
                                     {
                                         Debug.WriteLine($"Fallback to CloudIdentity experience if _loginMethod is not provided");
-                                        //appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
-                                        appBrowser.OnlineLogin.Login(_xrmUri);
+                                        appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
+                                      
                                         break;
                                     }
 
@@ -133,8 +134,8 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                 catch (Exception exc)
                                 {
                                     Console.WriteLine($"Exception on Attempt #{retryCount + 1}: {exc}");
-
-                                    if (retryCount + 1 == Reference.Login.SignInAttempts)
+                                    //if (retryCount + 1 == Reference.Login.SignInAttempts)     
+                                    if (retryCount + 1 == 5)
                                     {
                                         // Login exception occurred, take screenshot
                                         _resultsDirectory = TestContext.TestResultsDirectory;
