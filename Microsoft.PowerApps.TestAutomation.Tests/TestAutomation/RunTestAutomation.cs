@@ -124,7 +124,8 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     else
                                     {
                                         Debug.WriteLine($"Fallback to CloudIdentity experience if _loginMethod is not provided");
-                                        appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
+                                        //appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
+                                        appBrowser.OnlineLogin.Login(_xrmUri);
                                         break;
                                     }
 
