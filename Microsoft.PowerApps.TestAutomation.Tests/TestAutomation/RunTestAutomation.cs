@@ -69,7 +69,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                 // Track total number of TestURLs
                 int testUrlCount = testUrlList.Value.Count();
                    
-                Console.WriteLine($"Account Values #{_username}: {_password}");
+                Debug.WriteLine($"Account Values #{_username}: {_password}");
                 
                 foreach (Uri testUrl in testUrlList?.Value)
                 {
@@ -77,7 +77,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                     // Test URL
                     _testAutomationUri = testUrl;
                     testRunCounter += 1;
-                    Console.WriteLine($"testRunCounter : {testRunCounter}");
+                    Debug.WriteLine($"testRunCounter : {testRunCounter}");
                     
                     try
                     {
@@ -87,10 +87,10 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                             //Login To PowerApps
                             Debug.WriteLine($"Attempting to authenticate to Maker Portal: {_xrmUri}");
                             
-                            Console.WriteLine($"Account Values #{_username}: {_password}");
-                            Console.WriteLine($"Login attempts: {Reference.Login.SignInAttempts}");
-                            Console.WriteLine($"URL: {_xrmUri}");
-                            Console.WriteLine($"loginMethod: {_loginMethod}");
+                            Debug.WriteLine($"Account Values #{_username}: {_password}");
+                            Debug.WriteLine($"Login attempts: {Reference.Login.SignInAttempts}");
+                            Debug.WriteLine($"URL: {_xrmUri}");
+                            Debug.WriteLine($"loginMethod: {_loginMethod}");
                             
                             for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
                             {
@@ -100,7 +100,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     // CloudIdentity uses standard Office 365 sign-in service
                                     if (_loginMethod == "CloudIdentity")
                                     {
-                                        Console.WriteLine($"Enter CloudIdentity");
+                                        Debug.WriteLine($"Enter CloudIdentity");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
                                         break;
                                     }
@@ -108,21 +108,21 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     else if (_loginMethod == "FederatedIdentity")
                                     {
                                         // Do Federated Login
-                                         Console.WriteLine($"Federated Login");
+                                         Debug.WriteLine($"Federated Login");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString(), FederatedLoginAction);
                                         break;
                                     }
                                     // FederatedIdentity scenario -- but DevOps agent is configured with SSO capability
                                     else if (_loginMethod == "PassThrough")
                                     {
-                                        Console.WriteLine($"PassThrough");
+                                        Debug.WriteLine($"PassThrough");
                                         appBrowser.OnlineLogin.Login(_xrmUri);
                                         break;
                                     }
                                     // Fallback to CloudIdentity experience if _loginMethod is not provided
                                     else
                                     {
-                                        Console.WriteLine($"Fallback to CloudIdentity experience if _loginMethod is not provided");
+                                        Debug.WriteLine($"Fallback to CloudIdentity experience if _loginMethod is not provided");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
                                         break;
                                     }
