@@ -70,10 +70,11 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                 int testUrlCount = testUrlList.Value.Count();
                    
                 Debug.WriteLine($"Account Values #{_username}: {_password}");
+                Debug.WriteLine($"testUrlCount : {testUrlCount}");
                 
                 foreach (Uri testUrl in testUrlList?.Value)
                 {
-                    Console.WriteLine($"testUrl : {testUrl}");
+                    Debug.WriteLine($"testUrl : {testUrl}");
                     // Test URL
                     _testAutomationUri = testUrl;
                     testRunCounter += 1;
