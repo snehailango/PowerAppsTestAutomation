@@ -83,7 +83,9 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                             //Login To PowerApps
                             Debug.WriteLine($"Attempting to authenticate to Maker Portal: {_xrmUri}");
                             
-                            Console.WriteLine($"Values #{_username}: {_password}");
+                            Console.WriteLine($"Account Values #{_username}: {_password}");
+                            Console.WriteLine($"Login attempts: {Reference.Login.SignInAttempts}");
+                            Console.WriteLine($"loginMethod: {_loginMethod}");
                             
                             for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
                             {
