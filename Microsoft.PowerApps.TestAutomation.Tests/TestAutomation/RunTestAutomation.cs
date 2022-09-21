@@ -82,7 +82,9 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                         {
                             //Login To PowerApps
                             Debug.WriteLine($"Attempting to authenticate to Maker Portal: {_xrmUri}");
-
+                            
+                            Console.WriteLine($"Values #{_username}: {_password}");
+                            
                             for (int retryCount = 0; retryCount < Reference.Login.SignInAttempts; retryCount++)
                             {
                                 try
@@ -91,6 +93,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     // CloudIdentity uses standard Office 365 sign-in service
                                     if (_loginMethod == "CloudIdentity")
                                     {
+                                        Console.WriteLine($"Enter CloudIdentity");
                                         appBrowser.OnlineLogin.Login(_xrmUri, _username.ToSecureString(), _password.ToSecureString());
                                         break;
                                     }
@@ -104,6 +107,7 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                                     // FederatedIdentity scenario -- but DevOps agent is configured with SSO capability
                                     else if (_loginMethod == "PassThrough")
                                     {
+                                        Console.WriteLine($"PassThrough");
                                         appBrowser.OnlineLogin.Login(_xrmUri);
                                         break;
                                     }
