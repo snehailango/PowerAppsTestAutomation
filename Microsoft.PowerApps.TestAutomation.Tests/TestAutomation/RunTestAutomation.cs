@@ -68,13 +68,17 @@ namespace Microsoft.PowerApps.TestAutomation.Tests
                 var testUrlList = appBrowser.TestAutomation.GetTestURLs(_testAutomationURLFilePath);
                 // Track total number of TestURLs
                 int testUrlCount = testUrlList.Value.Count();
-
+                   
+                Console.WriteLine($"Account Values #{_username}: {_password}");
+                
                 foreach (Uri testUrl in testUrlList?.Value)
                 {
+                    Console.WriteLine($"testUrl : {testUrl}");
                     // Test URL
                     _testAutomationUri = testUrl;
                     testRunCounter += 1;
-
+                    Console.WriteLine($"testRunCounter : {testRunCounter}");
+                    
                     try
                     {
                         // if TestCounter > 1, authentication not required
